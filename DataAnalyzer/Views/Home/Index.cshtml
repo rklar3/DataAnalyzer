@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="container">
+
+        @model List<RiskDetails>
+
+        <h2>@ViewData["Message"]</h2>
+
+        <h5 class="text-success">@ViewData["Good"] had no risk</h5>
+        <h5 class="text-danger">@ViewData["bad"] contain a risk, displayed below</h5>
+
+        @*@ViewBag.Websites[0].Name
+        @ViewBag.Websites[1].Name
+        @ViewBag.Websites[2].Name
+        @ViewBag.Websites[3].Name
+        @ViewBag.Websites[4].Name*@
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Number Of Risks</th>
+                    <th scope="col">Risk</th>
+                    <th scope="col">Risk Level</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <th scope="row">@(i + 1)</th>
+                        <td>@Model[i].SumOfRisks</td>
+                        <td>@Model[i].Risk</td>
+                        <td>@Model[i].RiskLevel</td>
+
+                        <td>
+                            <a asp-action="Details" class="btn btn-primary" asp-route-id="@Model[i].RiskLevel">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+<script>
+
+    </script>
+

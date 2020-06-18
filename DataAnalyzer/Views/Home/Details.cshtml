@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Allow user to input binary string and display fsm results -->
+
+@model RiskDetails
+
+    <div class="container-fluid">
+     
+        <div class="table-responsive">
+            <h2>Risk - @Model.Risk </h2>
+            <hr />
+
+            <h4>Most Searched websites</h4>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Website</th>
+                        <th scope="col"># of Hits</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < Model.ListOfMostSearched.Count; i++)
+                    {
+                        <tr>
+                            <td scope="row">@Model.ListOfMostSearched[i].Name</td>
+                            <td> @Model.ListOfMostSearched[i].Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h4>Searches with RiskLevel: @Model.RiskLevel </h4>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">External IP</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Request</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.ListOfMetaData.Count; i++)
+                    {
+                        <tr>
+
+                            <th scope="row">@(i + 1)</th>
+                            @*<td class="col-10">@Model.RiskData[i].website</td>*@
+                            <td>@Model.ListOfMetaData[i].IpExternal</td>
+                            <td>@Model.ListOfMetaData[i].DateOfSearch.ToString("d")</td>
+                            <td>@Model.ListOfMetaData[i].Content</td>
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        </div>
+   

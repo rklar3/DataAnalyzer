@@ -1,0 +1,57 @@
+﻿
+
+@model DataAnalyzerML.Model.ModelInput
+
+
+    <div class="container">
+
+        <h2>Enter URL to see if it contains a risk</h2>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Predict">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            @*<label asp-for="URL" class="control-label"></label>*@
+                            <input asp-for="URL" class="form-control" />
+                            <span asp-validation-for="URL" class="text-danger"></span>
+                        </div>
+
+                        @*<div class="form-group col-md-4">
+                            <label asp-for="LocalPath" class="control-label"></label>
+                            <input asp-for="LocalPath" class="form-control" />
+                            <span asp-validation-for="LocalPath" class="text-danger"></span>
+                        </div>*@
+                        <div class="form-group text-right">
+                            <input type="submit" value="Predict" class="btn btn-primary" />
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr />
+
+        @if (ViewBag.Result != null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    @if (@ViewBag.Result.Prediction == true)
+                    {
+                        <h5>Search contains a risk</h5>
+                    }
+                    else
+                    {
+                        <h5>Search is not a risk</h5>
+                    }
+
+
+                </div>
+            </div>
+
+        }
+
+    </div>
